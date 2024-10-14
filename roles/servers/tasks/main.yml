@@ -1,0 +1,20 @@
+---
+
+-  name: Necessary packages for Ubuntu
+   when: ansible_facts['os_family'] == "Debian"
+   apt:
+     name:
+       - nagios3
+       - nagios-plugins
+       - apache2
+     update_cache: yes
+     state: present
+
+- name: Necessary packages for CentOS
+  when: ansible_facts['os_family'] == "RedHat"
+  dnf:
+    name:
+      - nagios
+      - nagios-plugins-all
+      - httpd
+    state: present
